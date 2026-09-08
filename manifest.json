@@ -1,0 +1,9 @@
+{
+  "id": "mermaid-zoom-lightbox",
+  "name": "Mermaid Zoom Lightbox",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Click a rendered Mermaid diagram to open it full-screen with scroll/pinch zoom and drag-to-pan.",
+  "author": "you",
+  "isDesktopOnly": false
+}
