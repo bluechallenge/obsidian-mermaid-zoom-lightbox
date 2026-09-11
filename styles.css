@@ -5,7 +5,11 @@
 .mzl-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  /* Obsidian's own layer scale (tooltip ~90, notice ~70, menu ~80) tops out
+     well below the old 9999 this used to be, which silently buried tooltips
+     and Notices behind this full-screen overlay. Sit at the modal layer so
+     they render above us like they do above any other Obsidian modal. */
+  z-index: var(--layer-modal, 60);
   background: var(--background-primary);
   display: flex;
   flex-direction: column;
@@ -28,6 +32,13 @@
   line-height: 1;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.mzl-divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 2px 2px;
+  background: var(--background-modifier-border);
 }
 
 .mzl-viewport {

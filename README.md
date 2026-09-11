@@ -7,7 +7,8 @@ An Obsidian plugin that lets you click a rendered Mermaid diagram to open it ful
 - Click any rendered Mermaid diagram to open it in a full-screen lightbox.
 - Scroll wheel or trackpad pinch to zoom, centered on the cursor.
 - Click-drag to pan.
-- Toolbar (`−` `⟳` `+` `✕`) and keyboard shortcuts (`+`, `-`, `0` to reset, `Esc` to close).
+- Toolbar (`−` `⟳` `+` `⬇` `⧉` `✕`) and keyboard shortcuts (`+`, `-`, `0` to reset, `Esc` to close).
+- Export the diagram as a PNG, or copy it straight to the clipboard, at a configurable resolution (Settings → Mermaid Zoom Lightbox).
 
 Pairs well with a CSS snippet that scales Mermaid diagrams down to fit the note width in normal reading view, e.g.:
 
