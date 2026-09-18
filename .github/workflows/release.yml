@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Verify tag matches manifest.json version
         run: |
@@ -22,6 +24,21 @@ jobs:
             exit 1
           fi
 
+      - name: Generate release notes from commit log
+        id: notes
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          tags="$(git tag --sort=-v:refname)"
+          prev_tag="$(echo "$tags" | awk -v t="$tag" 'found{print; exit} $0==t{found=1}')"
+          range="$tag"
+          [ -n "$prev_tag" ] && range="$prev_tag..$tag"
+          {
+            echo "notes<<NOTES_EOF"
+            git log --pretty=format:'- %s' "$range" | grep -viE '^- bump version'
+            echo
+            echo "NOTES_EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,4 +47,4 @@ jobs:
           gh release create "$tag" \
             main.js manifest.json styles.css \
             --title "$tag" \
-            --generate-notes
+            --notes "${{ steps.notes.outputs.notes }}"
