@@ -370,6 +370,7 @@ function replaceForeignObjects(svgEl, originalSvgEl) {
     textEl.setAttribute('font-size', String(fontSize));
     textEl.setAttribute('font-family', fontFamily);
     textEl.setAttribute('fill', fill);
+    textEl.setAttribute('stroke', 'none');
 
     const centerX = x + width / 2;
 
